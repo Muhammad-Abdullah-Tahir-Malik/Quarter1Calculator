@@ -62,29 +62,29 @@ async function main() {
             type: "number",
             name: "no",
             message: `Enter number #${i + 1}:`,
-          //  filter:(input)=>{
-            //    return parseFloat(input);
+            filter:(input)=>{
+              return parseFloat(input);
             },
-            //validate: (input) => {
-              //const num = parseFloat(input);
-              //if (isNaN(input)) {
-                //return "Please enter a valid number.";
-              //}
-              //return true;
-            //},
-          //},
+            validate: (input) => {
+              const num = parseFloat(input);
+              if (isNaN(input)) {
+                return "Please enter a valid number.";
+              }
+              return true;
+            },
+          },
         ]);
-        //numbers.push(parseFloat(no));
-       // numbers.push(no);
+        numbers.push(parseFloat(no));
+        numbers.push(no);
       }
 
       const { operation } = await inquirer.prompt([
-       /* {
+        {
           type: "list",
           name: "operation",
           message: "Select an operation:",
-      //    choices: ["+", "-", "*", "÷"],
-        },*/
+          choices: ["+", "-", "*", "÷"],
+        },
       ]);
 
       let result = 0;
@@ -94,13 +94,13 @@ async function main() {
           result = numbers.reduce((acc, curr) => acc + curr, 0);
           break;
         case "-":
-     //     result = numbers.reduce((acc, curr) => acc - curr);
+       result = numbers.reduce((acc, curr) => acc - curr);
           break;
         case "*":
           result = numbers.reduce((acc, curr) => acc * curr, 1);
           break;
         case "÷":
-     //     result = numbers.reduce((acc, curr) => acc / curr);
+          result = numbers.reduce((acc, curr) => acc / curr);
           break;
         default:
           console.log("Invalid operation selected.");
